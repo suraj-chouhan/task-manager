@@ -26,7 +26,7 @@ function App(){
 	}
 
 	const fetchTasks = async()=>{
-		console.log(api);
+		console.log("hello");
 		const res = await axios.get(`${api}`);
 		setTasks(res.data);
 	}
@@ -41,7 +41,19 @@ function App(){
 			<input value={title} onChange={(e)=>{setTitle(e.target.value);}} placeholder="Enter Title" />
 			<button onClick={addTask}>Add</button>
 			<ul>
-				
+				{
+					tasks.map(task => (
+						<li key={task._id}>
+							<span onClick={()=>toggleTask(task)} style={{ 
+								textDecoration : task.completed ? "line-through" : "none",
+								cursor: "pointer"
+						}}>
+								{task.title}
+							</span>&nbsp;
+							<button onClick={()=>deleteTask(task._id)}>X</button>
+						</li>	
+					))
+				}
 			</ul>
 		</div>
 	);	

@@ -8,7 +8,7 @@ function App(){
 	const [title, setTitle] = useState("");
 	
 	const addTask = async ()=>{
-		await api.post(`/`,{ title });
+		await axios.post(`${api}`,{ title });
 		setTitle("");
 		fetchTasks();
 	}
@@ -26,7 +26,7 @@ function App(){
 	}
 
 	const fetchTasks = async()=>{
-		const res = await api.get(`/`);
+		const res = await axios.get(`https://task-manager-3pmf.onrender.com/api/tasks`);
 		setTasks(res.data);
 	}
 	

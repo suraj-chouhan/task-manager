@@ -8,25 +8,25 @@ function App(){
 	const [title, setTitle] = useState("");
 	
 	const addTask = async ()=>{
-		await axios.post(`${api}`,{ title });
+		await api.post(`/`,{ title });
 		setTitle("");
 		fetchTasks();
 	}
 
 	const toggleTask = async(task) =>{
-		await axios.put(`${api}/${task._id}`,{
+		await api.put(`/${task._id}`,{
 			completed: !task.completed				
 		});
 		fetchTasks();
 	}
 	
 	const deleteTask = async(id) =>{
-		await axios.delete(`${api}/${id}`);
+		await api.delete(`/${id}`);
 		fetchTasks();
 	}
 
 	const fetchTasks = async()=>{
-		const res = await axios.get(`https://task-manager-3pmf.onrender.com/api/tasks`);
+		const res = await api.get(`/`);
 		setTasks(res.data);
 	}
 	

@@ -26,8 +26,7 @@ function App(){
 	}
 
 	const fetchTasks = async()=>{
-		console.log("hello"+api);
-		const res = await axios.get(`${api}`);
+		const res = await api.get(`/`);
 		setTasks(res.data);
 	}
 	

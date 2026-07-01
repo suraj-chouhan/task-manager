@@ -41,17 +41,19 @@ function App(){
 			<button onClick={addTask}>Add</button>
 			<ul>
 				{
-					tasks.map(task => (
-						<li key={task._id}>
-							<span onClick={()=>toggleTask(task)} style={{ 
-								textDecoration : task.completed ? "line-through" : "none",
-								cursor: "pointer"
-						}}>
-								{task.title}
-							</span>&nbsp;
-							<button onClick={()=>deleteTask(task._id)}>X</button>
-						</li>	
-					))
+					Array.isArray(tasks) ? (
+						tasks.map(task => (
+							<li key={task._id}>
+								<span onClick={()=>toggleTask(task)} style={{ 
+									textDecoration : task.completed ? "line-through" : "none",
+									cursor: "pointer"
+							}}>
+									{task.title}
+								</span>&nbsp;
+								<button onClick={()=>deleteTask(task._id)}>X</button>
+							</li>	
+						))
+					) : ( <p>No tasks found</p> )
 				}
 			</ul>
 		</div>

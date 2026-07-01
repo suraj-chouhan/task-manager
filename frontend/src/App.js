@@ -8,7 +8,7 @@ function App(){
 	const [title, setTitle] = useState("");
 	
 	const addTask = async ()=>{
-		await axios.post(`${api}`,{ title });
+		await api.post(`/`,{ title });
 		setTitle("");
 		fetchTasks();
 	}

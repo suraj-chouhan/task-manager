@@ -1,5 +1,6 @@
 import React, { useState , useEffect } from 'react';
 import axios from 'axios';
+import api from "./api";
 
 
 function App(){
@@ -7,25 +8,25 @@ function App(){
 	const [title, setTitle] = useState("");
 	
 	const addTask = async ()=>{
-		await axios.post(`http://localhost:5000/api/tasks`,{ title });
+		await axios.post(`${api}`,{ title });
 		setTitle("");
 		fetchTasks();
 	}
 
 	const toggleTask = async(task) =>{
-		await axios.put(`http://localhost:5000/api/tasks/${task._id}`,{
+		await axios.put(`${api}/${task._id}`,{
 			completed: !task.completed				
 		});
 		fetchTasks();
 	}
 	
 	const deleteTask = async(id) =>{
-		await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+		await axios.delete(`${api}/${id}`);
 		fetchTasks();
 	}
 
 	const fetchTasks = async()=>{
-		const res = await axios.get(`http://localhost:5000/api/tasks`);
+		const res = await axios.get(`${api}`);
 		setTasks(res.data);
 	}
 	
